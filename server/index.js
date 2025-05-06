@@ -3,9 +3,16 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
+const sequelize = require("./config/database");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+// Initialize database
+sequelize
+  .sync()
+  .then(() => console.log("Database synchronized"))
+  .catch((err) => console.error("Error synchronizing database:", err));
 
 // ─── Middlewares ───────────────────────────────────────────────────────────────
 app.use(express.json());

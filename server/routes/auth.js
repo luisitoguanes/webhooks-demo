@@ -2,13 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const sequelize = require("../config/database");
-
-// Initialize database
-sequelize
-  .sync()
-  .then(() => console.log("Database synchronized"))
-  .catch((err) => console.error("Error synchronizing database:", err));
 
 // Register endpoint
 router.post("/register", async (req, res) => {
